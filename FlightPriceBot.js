@@ -73,23 +73,6 @@ bot.onText(/^([a-zA-Z -]+)$/, function (msg, match)
 			
 			fs.appendFile("log.txt", fromId+" (@"+msg.from.username+") requested data for "+origin_iata+"-"+destination_iata+"\n", function (err) {});
 			
-			var joke = 0;
-			
-			if (destination_iata == "BOG")
-			{
-				joke = "❄️ Hey, gringo, wanna some snow? 😉";
-			}
-			
-			if (destination_iata == "ZYA")
-			{
-				function capitalizeFirstLetter (string)
-				{
-					return string.charAt(0).toUpperCase() + string.slice(1);
-				}
-
-				joke = "🔥 Why don't you do it in "+capitalizeFirstLetter(inputs[0].toLowerCase())+" and save money?";
-			}
-			
 			var date = new Date();
 			
 			var str = "";
@@ -129,11 +112,6 @@ bot.onText(/^([a-zA-Z -]+)$/, function (msg, match)
 					str += "⬇️ Minimum price: "+min_price+" USD\n↕️ AVERAGE PRICE: " + Math.floor(sum/Object.keys(bod.data).length) + " USD\n⬆️ Maximum price: "+max_price+" USD";
 					
 					str += "\n\n📅 Data exact for "+start_date.split("-")[2]+"."+start_date.split("-")[1]+" - "+final_date.split("-")[2]+"."+final_date.split("-")[1]+"\n";
-					
-					if (joke)
-					{
-						str += "\n"+joke;
-					}
 					
 					bot.sendMessage(fromId, str);
 				}
